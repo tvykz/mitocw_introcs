@@ -1,0 +1,44 @@
+'''
+Created on Nov 23, 2020
+
+@author: tylersehon
+'''
+#===============================================================================
+# Problem 2.
+# Write a program that computes the sum of the logarithms of all the primes from 2 to some
+# number n, and print out the sum of the logs of the primes, the number n, and the ratio of these
+# two quantities. Test this for different values of n.
+# You should be able to make only some small changes to your solution to Problem 1 to solve this
+# problem as well. 
+#===============================================================================
+import math
+
+n = input("Please input an integer: ",)
+i = 2
+sumLogs = 0
+#tests if a number is prime
+def isPrime(num):
+    i = 2
+    num = int(num)
+    if num%2 != 0:
+        for i in range(i, num-1):
+            if num%i == 0:
+                return False
+        return True
+    else: 
+        return False
+
+# add up the natural logs of all prime numbers between 2 and n
+n = int(n)
+for i in range(i, n):
+    if isPrime(i) == True:
+        sumLogs = math.log(i) + sumLogs
+
+# compute the ratio between the sum of all prime number logs in this range and n. This should approach one as n increases
+ratio = n/sumLogs 
+
+print("sum of the logs of the primes: " + str(sumLogs))
+print("your number: " + str(n))
+print("the ratio of your number to the sum of the logs of all primes less than your number: " + str(ratio))
+
+    
