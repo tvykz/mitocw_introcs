@@ -1,0 +1,25 @@
+# this will test for the 1000th prime. n will be tested for being prime, and the run will break after n is prime 999 times. 999 times because we disclude 2 as prime for sake of simplicity.
+
+n = 1
+num_primes = 0
+
+# test if a number is prime
+def isPrime(num):
+    i = 3                                                                  # we start with three because a prime number cant be divisible by two or one
+    if num%2 != 0:                                                         # we should only check odd numbers
+        for i in range(i, num-1): 
+            if num%i == 0: #has to not be divisible by one
+                return 0
+                break
+    else:
+        return 0 
+    return 1
+
+# loop all numbers starting with three, check if they are prime, and break when we have counted 999 primes (1000 if we include 2). 
+while num_primes < 999:
+    n += 1
+    if isPrime(n) == 1:
+        num_primes += 1
+
+# the last n will be the 1000th prime
+print(n)
