@@ -1,0 +1,58 @@
+'''
+Created on Nov 24, 2020
+
+@author: tylersehon
+'''
+#===============================================================================
+# Show that it is possible to buy exactly 50, 51, 52, 53, 54, and 55 McNuggets, by finding
+# solutions to the Diophantine equation. You can solve this in your head, using paper and pencil,
+# or writing a program. However you chose to solve this problem, list the combinations of 6, 9
+# and 20 packs of McNuggets you need to buy in order to get each of the exact amounts.
+#===============================================================================
+
+def Biphantine(n):
+    pack1 = 9
+    pack2 = 20
+    numpack1 = 0
+    numpack2 = 0
+    i = 0
+    for i in range(i, n):
+        if (n - i*pack2) > 0 and (n - i*pack2)%pack1 == 0:
+            numpack1 = (n - (i*pack2))//pack1
+            numpack2 = i
+            break
+        elif (n - i*pack1) > 0 and (n - i*pack1)%pack2 == 0:
+            numpack2 = (n - (i*pack1))//pack2
+            numpack1 = i
+            break
+    return (numpack1, numpack2)
+
+def Diophantine(n):
+    pack6 = 6
+    numpack6 = 0
+    numpack9 = 0
+    numpack20 = 0
+    i = 0
+    possible = False
+    
+    for i in range(i, n+1):
+        chickens_not_from_pack6 = n - i*pack6
+        if chickens_not_from_pack6 == 0:
+            numpack6 = i
+            possible = True
+            break 
+        
+        elif Biphantine(chickens_not_from_pack6) != (0, 0):
+            cntrl = Biphantine(chickens_not_from_pack6)
+            numpack6 = i
+            numpack9 = cntrl[0]
+            numpack20 = cntrl[1]
+            possible = True
+            break
+    
+    if possible == True: 
+        print ('To get ' + str(n) + ' chicken nuggets, order ' + str(numpack6) + ' package(s) of 6, '+ str(numpack9) + ' package(s) of 9, and ' + str(numpack20) + ' package(s) of 20.') 
+    else:
+        print ('Sorry, you cannot get that many nuggets.')
+
+print (Diophantine(int(input('How many nuggets would you like?: ', ))))
