@@ -1,0 +1,38 @@
+'''
+Created on Nov 29, 2020
+
+@author: tylersehon
+'''
+from string import *
+#===============================================================================
+# Write two functions, called countSubStringMatch and countSubStringMatchRecursive that
+# take two arguments, a key string and a target string. These functions iteratively and recursively count
+# the number of instances of the key in the target string. You should complete definitions for
+# def countSubStringMatch(target,key):
+# and
+# def countSubStringMatchRecursive (target, key):
+#===============================================================================
+
+def countSubStringMatch(key, target):
+    #counts the amount of substrings that match the 'key' string in the 'target' string using iteration
+    i = 0 # index number, number of iterations minus one
+    count = 0 # number  of substrings found in target
+    for i in range(i, len(target)): # test each location in the target string to see if 'key' matches
+        if key == target[i + 1 - len(key): i+1]: #test 'key' against a substring of target that is the length of 'key'
+            count += 1 # if the 'key' matches the substring, keep track of the match in count
+    return count # return the count of matches after all indexes checked
+        
+    
+def countSubStringMatchRecursive(key, target):
+    #counts the amount of substrings that match the 'key' string in the 'target' string recursively
+    count = 0 # initiate a counter to keep track of the number of matches
+    loc = target.find(key) # set the location of the first substring match
+    if loc >= 0: # if target.find(key) is able to find a substring match, it will return an index location, otherwise -1
+        count += 1 + countSubStringMatchRecursive(key, target[loc+1:]) # tally the match, and add all matches recursively found on a new substring that excludes the current match
+    
+    return count # return the total number of matches in the given string 'target'
+    
+
+print(countSubStringMatch('the', 'paris in the the spring'))    
+
+print(countSubStringMatchRecursive('the', 'paris in the the spring'))
