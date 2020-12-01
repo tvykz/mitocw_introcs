@@ -52,18 +52,14 @@ def subStringMatchOneSub(key, target):
         
 
 def constrainedMatchPair(n, k, m):
-    # l1 will be a list that we can manipulate and later convert to a tuple. 
-    # it will be appended with the values for which there is a match 
+    # l1 will be a list that we can manipulate and later convert to a tuple. it will be appended with the values for which there is a match 
     l1 = []
     for loc in range(0, len(n)): #run through indexes of n as loc
-        i = 0 
-        while i < len(k): # run through indexes of k as i
-            if k[i] == n[loc] + 1 + m: 
-            # if a value in k (being the starting value of a match for substring2) is 1 
-            # and len(substring1) greater than the value of n, then the corresponding match-ups suppose a matchup of the original string 
-                l1.append(n[loc]) # add the location of the starting string matchup to a l1
-                break # there can only be one value in k that matches this condition
-            i += 1 # try another value of k if one is not yet found
+        element2 = n[loc] + 1 + m
+        
+        if element2 in k: # if a value in k (being the starting value of a match for substring2) is 1 and len(substring1) greater than the value of n, then the corresponding match-ups suppose a matchup of the original string 
+            l1.append(n[loc]) # add the location of the starting string matchup to a l1
+
     t1 = tuple(l1) # convert l1 to a tuple
     return t1
 
