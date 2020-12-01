@@ -22,15 +22,10 @@ Created on Nov 30, 2020
 # key13 = 'atgca'
 # Test your function on each combination of key and target string, as well as other examples that you 
 #===============================================================================
-def subStringMatchExact(key, target):
-    t1 = ()
-    i = 0
-    for i in range(i, len(target)):
-        newtar = target[i:]
-        if newtar.find(key) == 0:
-            l1 = list(t1)
-            l1.append(i)
-            t1 = tuple(l1)
-    return t1
 
-print(subStringMatchExact('a', 'a, aa, a'))
+def subStringMatchExact(key, target):
+    l1 = [i for i in range(len(target)) if target[i:].find(key) == 0]
+    return tuple(l1)
+    
+key1 = 'atgc'
+print('test1: ' + str(subStringMatchExact(key1, 'atgaatgcatggatgtaaatgcag')))
