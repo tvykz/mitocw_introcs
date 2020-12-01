@@ -18,15 +18,10 @@ Created on Nov 30, 2020
 #===============================================================================
 
 def subStringMatchExact(key, target):
-    t1 = ()
-    i = 0
-    for i in range(i, len(target)):
-        newtar = target[i:]
-        if newtar.find(key) == 0:
-            l1 = list(t1)
-            l1.append(i)
-            t1 = tuple(l1)
+    l1 = [i for i in range(len(target)) if target[i:].find(key) == 0]
+    t1 = tuple(l1)
     return t1
+    
 
 def subStringMatchOneSub(key, target):
     # search for all locations of key in target, with one substitution
